@@ -57,7 +57,8 @@ jobs:
         name: kernel versions
         with:
           script: |
-              var all_kernels = ['4.19', '5.4', '5.10', '5.15', '6.1', '6.6', '6.12', 'bpf', 'bpf-net', 'bpf-next', 'rhel8.6', 'rhel8.9' ]
+              var all_kernels = ['4.19', '5.4', '5.10', '5.15', '6.1', '6.6',
+              '6.12', 'bpf', 'bpf-net', 'bpf-next', 'rhel8.6', 'rhel8.9', 'rel8.10']
               var kernels = []
               const kernel_label_prefix = 'gha-builds/kernel/'
               res = await github.rest.issues.listLabelsOnIssue({
@@ -93,6 +94,12 @@ jobs:
                           options.platforms = 'linux/amd64'
                           options.rhel_ver = '8.9'
                           options.rhel_kver = '4.18.0-513.24.1.el8_9'
+                          break
+                      case 'rhel8.10':
+                          options.dockerfile = "dockerfiles/kernel-images-rhel8"
+                          options.platforms = 'linux/amd64'
+                          options.rhel_ver = '8.10'
+                          options.rhel_kver = '4.18.0-553.69.1.el8_10'
                           break
                       default:
                           options.dockerfile = "dockerfiles/kernel-images"
