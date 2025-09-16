@@ -12,10 +12,10 @@ RUN dnf config-manager --set-enabled powertools
 
 FROM builder AS prepare
 
-ARG RHEL_URL
+ARG RHEL_KURL
 
 WORKDIR /tmp
-RUN curl -fLO "${RHEL_URL}"
+RUN curl -fLO "${RHEL_KURL}"
 RUN rpm -ivh kernel*.src.rpm
 
 WORKDIR /root/rpmbuild/SPECS
